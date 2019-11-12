@@ -2,10 +2,14 @@
 Simple or command line application accessing IVTNO or IVTCM transaction via IMS TM Resource adapter.
 
 
-![standalone_app_ivtno.png](https://github.com/volov0/IMS-API/blob/master/tm-ims-ivt-app/standalone_app_ivtno.png?raw=true)
+![standalone_app_ivtno.png](tm-ims-ivt-app/standalone_app_ivtno.png?raw=true)
 
 Build jar:
+```
 mvn clean compile assembly:single
+```
 
 Run the app:
+```
 java -jar target/tm-ims-IVT-app-0.0.1-SNAPSHOT-jar-with-dependencies.jar LAST3
+```
