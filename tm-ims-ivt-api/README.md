@@ -8,6 +8,6 @@ Build jar:
 mvn clean package
 
 Run the app:
-mvn spring-boot:run
-or
-java -jar target/tm-ims-ivt-api-0.0.1-SNAPSHOT.jar
+mvn spring-boot:run  
+or after building a jar:
+java -jar target/tm-ims-ivt-api-0.0.1-SNAPSHOT.jar  
