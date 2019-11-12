@@ -13,12 +13,12 @@ mvn install:install-file -Dfile=IMSLogin.jar -DgroupId=com.ibm.ims -DartifactId=
 mvn install:install-file -Dfile=CWYBS_AdapterFoundation.jar -DgroupId=com.ibm.ims -DartifactId=CWYBS_AdapterFoundation -Dversion=15.1.2 -Dpackaging=jar
 ```
 
-Build jar:
+### Build jar:
 ```
 mvn clean compile assembly:single
 ```
 
-Run the app:
+### Run the app:
 ```
 java -jar target/tm-ims-IVT-app-0.0.1-SNAPSHOT-jar-with-dependencies.jar LAST3
 ```
