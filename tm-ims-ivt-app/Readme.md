@@ -2,7 +2,7 @@
 Simple or command line application accessing IVTNO or IVTCM transaction via IMS TM Resource adapter.
 
 
-![standalone_app_ivtno.png](tm-ims-ivt-app/standalone_app_ivtno.png?raw=true)
+![standalone_app_ivtno.png](standalone_app_ivtno.png?raw=true)
 
 Build jar:
 ```
