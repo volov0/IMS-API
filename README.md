@@ -13,4 +13,4 @@ Simple Springboot API accessing IVTNO or IVTCM transaction via TM resource adapt
 Same as tm-ims-ivt-api but this time enabled in ZOWE API ML.
 
 ### db-ims-zowe-api
-Springboot API eneabled in ZOWE API ML with the same output as tm-ims-ivt-zowe-api but this time underlying mechanism is JDBC instead of TM resource adapter.
+Springboot API enabled in ZOWE API ML with the same output as tm-ims-ivt-zowe-api but this time underlying mechanism is JDBC instead of TM resource adapter.
