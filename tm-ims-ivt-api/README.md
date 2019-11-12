@@ -5,9 +5,15 @@ Simple Springboot API accessing IVTNO or IVTCM transaction via IMS TM Resource a
 ![springboot_app_ivtno.png](springboot_app_ivtno.png?raw=true)
 
 Build jar:
+```
 mvn clean package
+```
 
 Run the app:  
-mvn spring-boot:run  
+```
+mvn spring-boot:run 
+```
 or after building a jar:  
-java -jar target/tm-ims-ivt-api-0.0.1-SNAPSHOT.jar  
+```
+java -jar target/tm-ims-ivt-api-0.0.1-SNAPSHOT.jar 
+```
