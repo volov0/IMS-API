@@ -1,0 +1,7 @@
+*.lic
+*.p12
+target/
+.settings/
+.project
+.classpath
+se
