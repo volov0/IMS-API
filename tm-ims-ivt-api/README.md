@@ -2,7 +2,7 @@
 Simple Springboot API accessing IVTNO or IVTCM transaction via IMS TM Resource adapter.
 
 
-![springboot_app_ivtno.png](tm-ims-ivt-api/springboot_app_ivtno.png?raw=true)
+![springboot_app_ivtno.png](springboot_app_ivtno.png?raw=true)
 
 Build jar:
 mvn clean package
