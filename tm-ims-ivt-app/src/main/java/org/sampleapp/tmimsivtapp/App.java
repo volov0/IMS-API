@@ -1,4 +1,4 @@
-package com.broadcom.ivt;
+package org.sampleapp.tmimsivtapp;
 
 /*-
  * ===========================LICENSE_START====================================
