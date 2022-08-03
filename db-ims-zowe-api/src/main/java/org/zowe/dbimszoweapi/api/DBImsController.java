@@ -1,4 +1,4 @@
-package com.ca.mfaas.dbimszoweapi.configuration;
+package org.zowe.dbimszoweapi.api;
 
 /*-
  * ===========================LICENSE_START====================================
@@ -20,12 +20,26 @@ package com.ca.mfaas.dbimszoweapi.configuration;
  * =============================LICENSE_END=====================================
  */
 
-import com.ca.mfaas.enable.EnableApiDiscovery;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import java.io.UnsupportedEncodingException;
 
-@Configuration
-@EnableApiDiscovery
-@ComponentScan({"com.ca.mfaas.enable", "com.ca.mfaas.product"})
-public class MfaasEnablerConfiguration {
+import javax.resource.ResourceException;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DBImsController {
+
+    @RequestMapping("/api/v1/display")
+    public DBDisplay read(@RequestParam(value = "lastname", defaultValue = "LAST1") String name) {
+        try {
+            return new DBDisplay(name);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (ResourceException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -1,4 +1,4 @@
-package com.ca.mfaas.dbimszoweapi.api.v1;
+package org.zowe.dbimszoweapi.api;
 
 /*-
  * ===========================LICENSE_START====================================

@@ -1,4 +1,4 @@
-package com.ca.mfaas.dbimszoweapi.api.v1;
+package org.zowe.dbimszoweapi;
 
 /*-
  * ===========================LICENSE_START====================================
@@ -20,26 +20,17 @@ package com.ca.mfaas.dbimszoweapi.api.v1;
  * =============================LICENSE_END=====================================
  */
 
-import java.io.UnsupportedEncodingException;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.resource.ResourceException;
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class DBImsApplicationTests {
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+	@Test
+	public void contextLoads() {
+	}
 
-@RestController
-public class DBImsController {
-
-    @RequestMapping("/api/v1/display")
-    public DBDisplay read(@RequestParam(value = "lastname", defaultValue = "LAST1") String name) {
-        try {
-            return new DBDisplay(name);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (ResourceException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }

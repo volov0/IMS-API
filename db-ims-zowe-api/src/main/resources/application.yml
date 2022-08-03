@@ -1,162 +1,56 @@
-#logging:
-#    level:
-#       ROOT: DEBUG
-   
-##############################################################################################
-# MFAAS configuration section
-##############################################################################################
-mfaas:
-    discovery:
-        serviceId: imsdb
-        locations: http://eureka:password@localhost:10011/eureka/
-        enabled: true
-        endpoints:
-            statusPage: ${mfaas.server.scheme}://${mfaas.service.hostname}:${mfaas.server.port}${mfaas.server.contextPath}/application/info
-            healthPage: ${mfaas.server.scheme}://${mfaas.service.hostname}:${mfaas.server.port}${mfaas.server.contextPath}/application/health
-            homePage: ${mfaas.server.scheme}://${mfaas.service.hostname}:${mfaas.server.port}${mfaas.server.contextPath}/api/v1/display
-        info:
-            serviceTitle:  imsdb
-            description:  JDBC access to IMS database
-            enableApiDoc: true
-            # swaggerLocation: resource_location_of_your_static_swagger_doc.json
-        fetchRegistry: false
-        region: default
-    service:
-        hostname: localhost  
-        ipAddress: 127.0.0.1
-    catalog-ui-tile:
-        id: imsdb
-        title: IMS JDBC API
-        description: API to display content of an IMS database
-        version:  1.0.0
-    server:
-        scheme: https
-        port: 60051
-        contextPath: /imsdb
-    security:
-        sslEnabled: true
-        protocol: TLSv1.2
-        ciphers: TLS_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_EMPTY_RENEGOTIATION_INFO_SCSV
-        keyAlias: localhost
-        keyPassword: password
-        keyStore: security/localhost.keystore.p12
-        keyStoreType: PKCS12
-        keyStorePassword: password
-        trustStore: security/localhost.truststore.p12
-        trustStoreType: PKCS12
-        trustStorePassword: password
-
-eureka:
-    instance:
-        appname: ${mfaas.discovery.serviceId}
-        hostname: ${mfaas.service.hostname}
-        statusPageUrlPath: ${mfaas.discovery.endpoints.statusPage}
-        healthCheckUrl: ${mfaas.discovery.endpoints.healthPage}
-        homePageUrl: ${mfaas.discovery.endpoints.homePage}
-        nonSecurePort: ${mfaas.server.port}
-        securePort: ${mfaas.server.port}
-        securePortEnabled: ${mfaas.security.sslEnabled}
-        nonSecurePortEnabled: false
-        metadata-map:
-            routed-services:
-                api_v1:
-                    gateway-url: "api/v1"
-                    service-url: ${mfaas.server.contextPath}/api/v1
-                api-doc:
-                    gateway-url: "api/v1/api-doc"
-                    service-url: ${mfaas.server.contextPath}/api-doc
-              #apiml:
-              #    apiInfo:
-              #        - apiId: ${mfaas.discovery.serviceId}
-              #          gatewayUrl: api/v1
-              #          swaggerUrl: ${mfaas.server.scheme}://${mfaas.service.hostname}:${mfaas.server.port}${mfaas.server.contextPath}/api-doc
-              #          documentationUrl: https://www.zowe.org
-            mfaas:
-                api-info:
-                    apiVersionProperties:
-                        v1:
-                            title: IMS JDBC API
-                            description: API to display content of an IMS database
-                            version: 1.0.0
-                            basePackage: com.ca.mfaas.dbimszoweapi.api.v1
-                            # apiPattern: /v1/.*  # alternative to basePackage for exposing endpoints which match the regex pattern to swagger JSON
-                discovery:
-                    catalogUiTile:
-                        id: ${mfaas.catalog-ui-tile.id}
-                        title:  ${mfaas.catalog-ui-tile.title}
-                        description: ${mfaas.catalog-ui-tile.description}
-                        version: ${mfaas.catalog-ui-tile.version}
-                    enableApiDoc: ${mfaas.discovery.info.enableApiDoc:true}
-                    service:
-                        title: ${mfaas.discovery.info.serviceTitle}
-                        description: ${mfaas.discovery.info.description}
-    client:
-        enabled: ${mfaas.discovery.enabled}
-        healthcheck:
-            enabled: false
-        serviceUrl:
-            defaultZone: ${mfaas.discovery.locations}
-        fetchRegistry:  ${mfaas.discovery.fetchRegistry}
-        region: ${mfaas.discovery.region}     
-
-
-      
- ##############################################################################################
- # Application configuration section
- ##############################################################################################
+spring:
+  application:
+    name: ${apiml.service.serviceId}
 server:
-      port: ${mfaas.server.port}
-      servlet:
-          contextPath: ${mfaas.server.contextPath}
-      ssl:
-          enabled: ${mfaas.security.sslEnabled}
-          protocol: ${mfaas.security.protocol}
-          ciphers: ${mfaas.security.ciphers}
-          keyStore: ${mfaas.security.keyStore}
-          keyAlias: ${mfaas.security.keyAlias}
-          keyPassword: ${mfaas.security.keyPassword}
-          keyStorePassword: ${mfaas.security.keyStorePassword}
-          keyStoreType: ${mfaas.security.keyStoreType}
-          trustStore: ${mfaas.security.trustStore}
-          trustStoreType: ${mfaas.security.trustStoreType}
-          trustStorePassword: ${mfaas.security.trustStorePassword}
-
-spring:
-    application:
-          name: ${mfaas.discovery.serviceId} 
-    mvc:
-        throw-exception-if-no-handler-found: true
-    profiles:
-        active: "prod"
-  
----
-
-spring:
-  profiles: dev
-mfaas:
-    service:
-        hostname: localhost
-        ipAddress: 127.0.0.1
-    server:
-        port: 8081
-    discovery:
-        enabled: false
-        locations: http://eureka:password@localhost:10011/eureka/
-    security:
-        sslEnabled: false
-
----
-
-spring:
-  profiles: prod
-mfaas:
-    service:
-        hostname: USILCA32.lvn.broadcom.net
-        ipAddress: 127.0.0.1
-    server:
-        port: 60051
-    discovery:
-        enabled: true
-        locations: http://eureka:password@localhost:10011/eureka/
-    security:
-        sslEnabled: true
+  ssl:
+    key-store: security/local/localhost.keystore.p12          # the path to the key store that contains the SSL certificate
+    key-store-password: password                              # password used to access the key store
+    key-store-type: pkcs12                                    # the type of the key store
+    key-alias: localhost                                      # alias that identifies the key in the key store
+    key-password: password                                    # password used to access the key in the key store
+  port: 8081                                                  # the port on which the server is listening
+apiml:
+  enabled: true                                               # register thsi API to APIML
+  enableUrlEncodedCharacters: false
+  service:
+    serviceId: imsdb                                          # id which identifies my service, must be unique
+    title: JDBC access to IMS database
+    description: API to display content of an IMS database
+    scheme: https
+    hostname: localhost                                       # hostname of my server
+    ipAddress: 127.0.0.1                                      # IP address of my server
+    port: 8081
+    contextPath: /${apiml.service.serviceId}                  # By default the contextPath is set to be the same as apiml.service.serviceId, but doesn't have to be the same
+    baseUrl: ${apiml.service.scheme}://${apiml.service.hostname}:${apiml.service.port}
+    homePageRelativeUrl: /api/v1
+    statusPageRelativeUrl: ${apiml.service.contextPath}/
+    healthCheckRelativeUrl: ${apiml.service.contextPath}/
+    discoveryServiceUrls:                                      # URL of the API Mediation Layer Discover Service.
+      - ## - fill in discovery service URL - ###
+    routes:
+      - gatewayUrl: api/v1
+        serviceUrl: /api/v1
+    apiInfo:
+      - apiId: zowe.apiml.imsdb
+        version: 1.0.0
+        gatewayUrl: /api/v1
+        swaggerUrl: ${apiml.service.scheme}://${apiml.service.hostname}:${apiml.service.port}${apiml.service.contextPath}
+    catalog:
+      tile:
+        id: ims_services
+        title: IMS API Services
+        description: "Experimental IMS Services "
+        version: 1.0.0
+    authentication:
+      scheme: bypass
+    ssl:
+      verifySslCertificatesOfServices: true
+      protocol: TLSv1.2
+      keyAlias: localhost
+      keyPassword: password
+      keyStore: security/local/localhost.keystore.p12
+      keyStorePassword: password
+      keyStoreType: PKCS12
+      trustStore: security/local/localhost.truststore.p12
+      trustStorePassword: password
+      trustStoreType: PKCS12
