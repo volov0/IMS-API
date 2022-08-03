@@ -8,7 +8,7 @@
 		<version>2.1.8.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ca.mfaas</groupId>
+	<groupId>com.broadcom.ims</groupId>
 	<artifactId>tm-ims-ivt-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tm-ims-ivt</name>
