@@ -62,7 +62,7 @@ public class DBDisplay {
 
 		// set parameters for IMS Connect connection
 		//String url = "jdbc:ims://"+props.getProperty("hostname")+":6667/P200G";
-		String url = "jdbc:ims://"+props.getProperty("hostname")+":6667/VKIVD2";
+		String url = "jdbc:ims://"+props.getProperty("hostname")+":"+props.getProperty("port")+"/VKIVD2";
 
 		try {
 			Connection conn = DriverManager.getConnection(url);

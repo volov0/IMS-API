@@ -60,8 +60,8 @@ public class IvtDisplay {
 		mcf.setHostName(props.getProperty("hostname"));
 		mcf.setUserName(props.getProperty("username"));
 		mcf.setPassword(props.getProperty("password"));
-		mcf.setDataStoreName("IMSW");
-		mcf.setPortNumber(new Integer(8866));
+		mcf.setDataStoreName(props.getProperty("datastore"));
+		mcf.setPortNumber(Integer.parseInt(props.getProperty("port")));
 
         //Create connection factory from ManagedConnectionFactory
 		cf = (IMSConnectionFactory) mcf.createConnectionFactory();
