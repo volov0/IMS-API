@@ -1,0 +1,58 @@
+#spring.profiles.active: https,diag,zos            # debug line
+
+spring:
+  application:
+    name: ${apiml.service.serviceId}
+server:
+  ssl:
+    key-store: security/local/localhost.keystore.p12          # the path to the key store that contains the SSL certificate
+    key-store-password: password                              # password used to access the key store
+    key-store-type: pkcs12                                    # the type of the key store
+    key-alias: localhost                                      # alias that identifies the key in the key store
+    key-password: password                                    # password used to access the key in the key store
+  port: 8080                                                  # the port on which the server is listening
+apiml:
+  enabled: true                                               # register thsi API to APIML
+  enableUrlEncodedCharacters: false
+  service:
+    serviceId: imsivtno                                       # id which identifies my service, must be unique
+    title: IMS IVTNO transaction
+    description: Simple API for IVTNO
+    scheme: https
+    hostname: localhost                                       # hostname of my server
+    ipAddress: 127.0.0.1                                      # IP address of my server
+    port: 8080
+    contextPath: /${apiml.service.serviceId}                  # By default the contextPath is set to be the same as apiml.service.serviceId, but doesn't have to be the same
+    baseUrl: ${apiml.service.scheme}://${apiml.service.hostname}:${apiml.service.port}
+    homePageRelativeUrl: /api/v1
+    statusPageRelativeUrl: ${apiml.service.contextPath}/
+    healthCheckRelativeUrl: ${apiml.service.contextPath}/
+    discoveryServiceUrls:                                      # URL of the API Mediation Layer Discover Service to register to Eureka
+      - ## - fill in discovery service URL - ###
+    routes:
+      - gatewayUrl: api/v1
+        serviceUrl: /api/v1
+    apiInfo:
+      - apiId: zowe.apiml.imsivtno
+        version: 1.0.0
+        gatewayUrl: /api/v1
+        swaggerUrl: ${apiml.service.scheme}://${apiml.service.hostname}:${apiml.service.port}${apiml.service.contextPath}
+    catalog:
+      tile:
+        id: ims_services
+        title: IMS API Services
+        description: "Experimental IMS Services "
+        version: 1.0.0
+    authentication:
+      scheme: bypass
+    ssl:
+      verifySslCertificatesOfServices: true
+      protocol: TLSv1.2
+      keyAlias: localhost
+      keyPassword: password
+      keyStore: security/local/localhost.keystore.p12
+      keyStorePassword: password
+      keyStoreType: PKCS12
+      trustStore: security/local/localhost.truststore.p12
+      trustStorePassword: password
+      trustStoreType: PKCS12
