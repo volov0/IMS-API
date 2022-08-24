@@ -24,14 +24,14 @@ import java.io.UnsupportedEncodingException;
 
 import javax.resource.ResourceException;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TmImsIvtController {
 
-    @RequestMapping("/api/v1")
+    @GetMapping("/api/v1")
     public IvtDisplay read(@RequestParam(value = "lastname", defaultValue = "") String name) {
         try {
             return new IvtDisplay(name);

@@ -24,8 +24,8 @@ import java.io.UnsupportedEncodingException;
 
 import javax.resource.ResourceException;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Base64;
@@ -35,7 +35,7 @@ import java.io.UnsupportedEncodingException;
 @RestController
 public class TmImsIvtController {
 
-    @RequestMapping("/api/v1")
+    @GetMapping("/api/v1")
     public IvtDisplay read(@RequestParam(value = "lastname", defaultValue = "") String name,
     @RequestHeader(value = "authorization", defaultValue = "") String header_auth) {
         /* By now APIML should have provided passticket along with username in the http authorization. 
