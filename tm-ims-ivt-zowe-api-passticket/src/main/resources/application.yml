@@ -44,7 +44,8 @@ apiml:
         description: "Experimental IMS Services "
         version: 1.0.0
     authentication:
-      scheme: bypass
+      scheme: httpBasicPassTicket
+      applid: ZOWEAPPL
     ssl:
       verifySslCertificatesOfServices: true
       protocol: TLSv1.2
