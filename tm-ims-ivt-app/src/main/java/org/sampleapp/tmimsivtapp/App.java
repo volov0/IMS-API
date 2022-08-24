@@ -88,7 +88,7 @@ public class App {
 		// Create an IMSInteraction from the connection
 		IMSInteraction interaction = (IMSInteraction) connection.createInteraction();
 
-		// Create an IMSConnection object
+		// Create an IMSInteraction specification object
 		IMSInteractionSpec ixnSpec = new IMSInteractionSpec();
 
 		// Doing non-conversational IMS transaction - input message send to IMS -> IMS
