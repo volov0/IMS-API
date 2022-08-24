@@ -45,7 +45,7 @@ apiml:
         version: 1.0.0
     authentication:
       scheme: httpBasicPassTicket
-      applid: ZOWEAPPL
+      applid: IMSWAPPL
     ssl:
       verifySslCertificatesOfServices: true
       protocol: TLSv1.2
